@@ -2,11 +2,26 @@
   "name": "flags",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ts-node src/index.ts",
+    "dev": "nodemon 'index.ts' --exec 'ts-node'",
+    "test": "jest --watch",
+    "cover": "jest --coverage"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Ado",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^8.2.0",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.7"
+  },
+  "devDependencies": {
+    "@types/jest": "^26.0.24",
+    "@types/node": "^14.0.27",
+    "jest": "^26.6.3",
+    "nodemon": "^2.0.4",
+    "ts-jest": "^26.5.3"
+  }
 }
