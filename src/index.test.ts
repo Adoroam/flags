@@ -68,6 +68,10 @@ describe('flags', () => {
     const mock = '-x hotdog bun'.split(' ')
     expect(flags(mock)).toStrictEqual({ x: 'hotdog bun' })
   })
+  test('single flag, with multi-spaced data', () => {
+    const mock = '-x hotdog and hamburger bun'.split(' ')
+    expect(flags(mock)).toStrictEqual({ x: 'hotdog and hamburger bun' })
+  })
   test('two flags, no data', () => {
     const mock = '-x -y'.split(' ')
     expect(flags(mock)).toStrictEqual({ x: 1, y: 1 })
