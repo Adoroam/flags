@@ -1,27 +1,24 @@
-import { hasFlags, chDashes, rmDashes } from './util'
+import { hasFlags } from './util'
+import { Token, TType } from './flag.types'
+import { tokenize } from './tokenize'
 const [, , ...args] = process.argv
 
-export const flags = (arr=args) => {
-  if (!hasFlags(arr)) return {}
-  const squished = arr.map(l => !!chDashes(l) ? '@_@' + l + '@_@' : l)
-    .join(' ')
-    .split('@_@')
-    .map(x => x.trim())
-    .filter(x => x !== '')
-  const flagMap = squished.map(chDashes)
-  return squished.reduce((a, c, i) => {
-    if (!!flagMap[i]) {
-      const flag = rmDashes(c)
-      const multiFlag = flag.length > 1 && flagMap[i] === 1
-      const data = flagMap[i + 1] === 0 ? squished[i + 1] : 1
-      const flagObject = multiFlag
-        ? Object.fromEntries(flag.split('').map(l => [l, data]))
-        : { [flag]: data }
-      return { ...a, ...flagObject }
-    } else {
-      return a
-    }
-  }, {})
+const spendTokens = (acc, { tType, tValue }: Token, i, tokenized) => {
+  const next = tokenized[i + 1]
+  const getValue = () => (!next.tType ? next.tValue : 1)
+  switch (tType) {
+    case TType.SINGLE:
+      const singlesArr = tValue.split('').map(l => [l, getValue()])
+      const output = Object.fromEntries(singlesArr)
+      return { ...acc, ...output }
+    case TType.DOUBLE:
+      return { ...acc, [tValue]: getValue() }
+    default:
+      return acc
+  }
 }
+
+export const flags = (arr = args) =>
+  !hasFlags(arr) ? {} : tokenize(arr).reduce(spendTokens, {})
 
 export default flags()
