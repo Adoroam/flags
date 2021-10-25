@@ -2,7 +2,7 @@
   "name": "flags",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.ts",
+  "main": "src/index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
     "dev": "nodemon 'index.ts' --exec 'ts-node'",
