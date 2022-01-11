@@ -2,9 +2,10 @@
   "compilerOptions": {
     "types": ["jest", "node"],
     "moduleResolution": "Node",
-    "noEmit": true, // turn off to transpile
+    "noEmit": false, // turn off to transpile
     "lib": ["ESNext", "ES2019.Object"],
     "target": "ES5",
+    "outDir": "./transpiled"
   },
   "include": ["./src/**/*"],
   "exclude": ["./src/*test.ts"]
