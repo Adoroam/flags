@@ -1,11 +1,12 @@
 {
-  "name": "flags",
+  "name": "@utility_belt/flags",
   "version": "1.0.0",
-  "description": "",
-  "main": "src/index.js",
+  "description": "tool for retrieving CLI flag data",
+  "main": "transpiled/index.js",
   "scripts": {
     "start": "ts-node src/index.ts",
     "dev": "nodemon 'index.ts' --exec 'ts-node'",
+    "build": "rm -r transpiled && tsc",
     "test": "jest --watch",
     "cover": "jest --coverage"
   },
