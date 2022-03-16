@@ -1,12 +1,15 @@
 {
   "compilerOptions": {
-    "types": ["jest", "node"],
-    "moduleResolution": "Node",
-    "noEmit": false, // turn off to transpile
-    "lib": ["ESNext", "ES2019.Object"],
     "target": "ES5",
-    "outDir": "./transpiled"
+    "module": "commonjs",
+    "moduleResolution": "Node",
+    "lib": ["ESNext", "ES2019.Object"],
+    "declaration": true,
+    "types": ["jest", "node"],
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
   },
   "include": ["./src/**/*"],
-  "exclude": ["./src/*test.ts"]
+  "exclude": ["node_modules", "dist", "./src/*test.ts"]
 }
